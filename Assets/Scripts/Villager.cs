@@ -25,12 +25,11 @@ public class Villager : MonoBehaviour
     public bool isAdult;
     public Profession profession;
     public Weapon currWeapon;
-    public Armor currArmor;    
+    public Armor currArmor;
 
-    // 设置职业
-    void SetProfessionFromWeapon()
+    void SetProfessionFromWeapon() // 设置职业
     {
-        if(currWeapon != null) // 如果有武器(工具)
+        if (currWeapon != null) // 如果有武器(工具)
         {
             profession = currWeapon.type; // 设置职业为武器的职业类型
         }
@@ -40,8 +39,7 @@ public class Villager : MonoBehaviour
         }
     }
 
-    // 设置武器(工具)
-    public bool SetWeapon(Weapon newWeapon)
+    public bool SetWeapon(Weapon newWeapon) // 设置武器(工具)
     {
         if (isAdult)
         {
@@ -54,9 +52,8 @@ public class Villager : MonoBehaviour
         }
         return false; // 如果未成年，无法装备武器
     }
-
-    // 设置护甲(服装)
-    public bool SetArmor(Armor newArmor)
+    
+    public bool SetArmor(Armor newArmor) // 设置护甲(服装)
     {
         if (isAdult)
         {
@@ -70,8 +67,8 @@ public class Villager : MonoBehaviour
         return false; // 如果未成年，无法装备护甲
     }
 
-    // 成年(当年龄(天数)达到3岁时调用)
-    public void BecomeAdult()
+    
+    public void BecomeAdult() // 成年(当年龄(天数)达到3岁时调用)
     {
         isAdult = true;
         dailyFoodRequirement = 2;
@@ -83,13 +80,18 @@ public class Villager : MonoBehaviour
         // GetComponent<SpriteRenderer>().sprite = sprite;
     }
 
-    // 年龄增加(根据天数调用)
-    public void IncreaseAge()
+    
+    public void IncreaseAge() // 年龄增加(根据天数调用)
     {
         age++;
         if (age == 3) // 三岁那天成年
         {
             BecomeAdult();
         }
+    }
+
+    public void VillagerDeath() // 村民死亡
+    {
+        // TODO: 村民死亡, 穿戴的装备/工具掉落
     }
 }

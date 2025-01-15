@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Building : MonoBehaviour
 {
-    public Profession type; // 农场、矿场等
-    public int level;
+    public Profession workerType; // 工人类型
+    public ResourceType resourceType; // 资源类型
+    public int level; // 建筑等级
     public int resourceOutput; // 单位时间的产出量
     public int capacity; // 存储容量(村民数量)
     public List<Villager> workers; // 当前工作的村民列表
