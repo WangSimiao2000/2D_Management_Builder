@@ -36,22 +36,8 @@ public class ResourceManager : MonoBehaviour
     public int ConsumeResource(ResourceType type, int amount) // 消耗资源
     {
         ResourceItem resource = resources.Find(r => r.type == type); // 查找资源
-        if (resource == null)
-        {
-            return -1; // 如果资源类型不存在
-        }
-
-        if (resource.amount >= amount)
-        {
-            resource.amount -= amount;
-            return 0; // 成功消耗，返回 0
-        }
-        else
-        {
-            int less = amount - resource.amount;
-            resource.amount = 0; // 将资源清空
-            return less; // 返回欠缺的数量
-        }
+        resource.amount -= amount; // 减少资源
+        return resource.amount; // 如果资源足够, 则返回非负数, 否则返回负数
     }
 
     public void AddResource(ResourceType type, int amount) // 添加资源
