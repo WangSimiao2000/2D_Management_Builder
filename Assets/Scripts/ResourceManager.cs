@@ -15,7 +15,7 @@ public enum ResourceType
 
 public class ResourceManager : MonoBehaviour
 {
-    private Dictionary<ResourceType, int> resources = new Dictionary<ResourceType, int>()
+    private readonly Dictionary<ResourceType, int> resources = new()
     {
         { ResourceType.Food, 0 },
         { ResourceType.Wood, 0 },
@@ -24,15 +24,6 @@ public class ResourceManager : MonoBehaviour
         { ResourceType.Gold, 0 },
         { ResourceType.Diamond, 0 },
     };
-
-    // 单例模式
-    public static ResourceManager instance;
-
-    void Start()
-    {
-        // 单例模式
-        instance = this;
-    }
 
     public int ConsumeResource(ResourceType type, int amount) // 消耗资源
     {
