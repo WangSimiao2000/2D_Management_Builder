@@ -12,11 +12,7 @@ public class GameManager : MonoBehaviour
     public void DailyFoodSettlement()
     {
         int totalFoodRequirement = villagers.Sum(v => v.dailyFoodRequirement);
-        if (resourceManager.food >= totalFoodRequirement)
-        {
-            resourceManager.food -= totalFoodRequirement;
-        }
-        else
+        if (resourceManager.ConsumeResource(ResourceType.Food, totalFoodRequirement) > 0)
         {
             // TODO: ´åÃñËÀÍöÂß¼­
         }
