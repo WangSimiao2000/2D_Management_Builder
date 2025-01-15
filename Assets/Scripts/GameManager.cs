@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
         {
             villager.VillagerDeath(); // 村民死亡
             villagers.Remove(villager); // 从村民列表中移除死亡的村民
-            Destroy(villager); // 销毁村民Object(游戏对象)
+            Destroy(villager.gameObject); // 销毁村民Object(游戏对象)
         }
         #endregion
 
