@@ -1391,6 +1391,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resourceManager: {fileID: 1571337095}
+  villagerNumberUI: {fileID: 557479940}
   villagers: []
   buildings: []
 --- !u!1 &1529603833

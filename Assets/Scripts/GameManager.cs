@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
     public ResourceManager resourceManager;
+    public GameObject villagerNumberUI;
     public List<Villager> villagers;
     public List<Building> buildings;
 
@@ -38,6 +40,8 @@ public class GameManager : MonoBehaviour
             villager.IncreaseAge();
         }
         #endregion
+
+        villagerNumberUI.GetComponentInChildren<TextMeshPro>().text = villagers.Count.ToString();
     }
 
     public void UnitTimeResourceGeneration()
