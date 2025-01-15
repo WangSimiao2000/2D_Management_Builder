@@ -13,35 +13,43 @@ public enum ResourceType
     Diamond
 }
 
+[System.Serializable] // 序列化 ResourceItem
+public class ResourceItem
+{
+    public ResourceType type;
+    public int amount;
+}
+
 public class ResourceManager : MonoBehaviour
 {
-    private readonly Dictionary<ResourceType, int> resources = new()
+    [SerializeField]
+    private List<ResourceItem> resources = new()
     {
-        { ResourceType.Food, 0 },
-        { ResourceType.Wood, 0 },
-        { ResourceType.Stone, 0 },
-        { ResourceType.Iron, 0 },
-        { ResourceType.Gold, 0 },
-        { ResourceType.Diamond, 0 },
+        new() { type = ResourceType.Food, amount = 0 },
+        new() { type = ResourceType.Wood, amount = 0 },
+        new() { type = ResourceType.Stone, amount = 0 },
+        new() { type = ResourceType.Iron, amount = 0 },
+        new() { type = ResourceType.Gold, amount = 0 },
+        new() { type = ResourceType.Diamond, amount = 0 }
     };
 
     public int ConsumeResource(ResourceType type, int amount) // 消耗资源
     {
-        if (!resources.ContainsKey(type))
+        ResourceItem resource = resources.Find(r => r.type == type); // 查找资源
+        if (resource == null)
         {
-            // 如果资源类型不存在，返回-1
-            return -1;
+            return -1; // 如果资源类型不存在
         }
 
-        if (resources[type] >= amount)
+        if (resource.amount >= amount)
         {
-            resources[type] -= amount; // 消耗资源
-            return 0; // 成功消耗，返回 0 表示没有欠缺
+            resource.amount -= amount;
+            return 0; // 成功消耗，返回 0
         }
         else
         {
-            int less = amount - resources[type]; // 计算欠缺的数量
-            resources[type] = 0; // 将资源清空
+            int less = amount - resource.amount;
+            resource.amount = 0; // 将资源清空
             return less; // 返回欠缺的数量
         }
     }
@@ -49,16 +57,20 @@ public class ResourceManager : MonoBehaviour
     public void AddResource(ResourceType type, int amount) // 添加资源
     {
         // 参数: type - 资源类型, amount - 数量
-
-        if (!resources.ContainsKey(type))
+        ResourceItem resource = resources.Find(r => r.type == type);
+        if (resource == null)
         {
-            resources[type] = 0;
+            resources.Add(new ResourceItem { type = type, amount = amount }); // 如果资源不存在，添加资源
         }
-        resources[type] += amount;
+        else
+        {
+            resource.amount += amount;
+        }
     }
 
     public int GetResourceAmount(ResourceType type) // 获取当前资源数量
     {
-        return resources.ContainsKey(type) ? resources[type] : 0;
+        ResourceItem resource = resources.Find(r => r.type == type); // 查找资源
+        return resource != null ? resource.amount : 0;
     }
 }
