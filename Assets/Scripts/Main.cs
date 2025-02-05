@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Main : MonoBehaviour
 {
-    void Start()
+    private void Awake()
     {
-        EnviromentManager.Instance.InitialNewEnvironment();
+        GridMapMgr.Instance.mapX = 25;
+        GridMapMgr.Instance.mapY = 25;
+        GridMapMgr.Instance.CreateGridDictionary();
     }
 }

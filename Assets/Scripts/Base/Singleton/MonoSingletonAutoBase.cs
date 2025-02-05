@@ -10,7 +10,7 @@ using UnityEngine;
 /// </summary>
 /// <typeparam name="T"></typeparam>
 
-public class BaseManager<T> : MonoBehaviour where T : MonoBehaviour
+public class MonoSingletonAutoBase<T> : MonoBehaviour where T : MonoBehaviour
 {
     private static T instance;
 
